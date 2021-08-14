@@ -13,7 +13,7 @@ function Home() {
   }, []);
 // fetchdata
   const fetchhotels = async () => {
-    const all = await axios.get("http://localhost:3001/");
+    const all = await axios.get("http://localhost:3001");
     sethotels(all.data);
   };
 // findhotel
@@ -44,14 +44,14 @@ function Home() {
         <div className="search">
           <form class="d-flex" onSubmit={findhotel}>
             <input
-              class="form-control me-2"
+              className="form-control me-2"
               type="search"
               placeholder="Search hotel by name"
               aria-label="Search"
               value={search}
               onChange={(e)=>setsearch(e.target.value)}
             />
-            <button class="btn btn-outline-success" type="submit">
+            <button className="btn btn-outline-success" type="submit">
               Search
             </button>
           </form>
