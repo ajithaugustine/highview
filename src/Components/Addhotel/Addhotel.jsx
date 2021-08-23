@@ -15,7 +15,7 @@ function Addhotel() {
   const register = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/addhotel", {
+      .post("https://oyo-serverside.herokuapp.com/addhotel", {
         name,
         address,
         imgUrl,
@@ -40,7 +40,7 @@ function Addhotel() {
       <Navbar />
 
       <div className="add">
-        <h3>Register</h3>
+        <h3 >Register</h3>
         <form className="row g-3" onSubmit={register}>
           <div className="col-md-6">
             <label className="form-label">Name</label>

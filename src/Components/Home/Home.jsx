@@ -1,27 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,} from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../Header/Navbar";
 import "./Home.css";
 import Footer from "../footer/Footer";
 function Home() {
-  const [hotels, sethotels] = useState([""]);
+  const [hotels, sethotels] = useState([]);
   const [search, setsearch] = useState('')
   const history = useHistory();
   useEffect(() => {
     fetchhotels();
   }, []);
+  console.log(hotels)
 // fetchdata
   const fetchhotels = async () => {
-    const all = await axios.get("http://localhost:3001");
+    const all = await axios.get("https://oyo-serverside.herokuapp.com/");
     sethotels(all.data);
   };
 // findhotel
   const findhotel =async(e)=>{
       e.preventDefault()
-    const all = await axios.get(`http://localhost:3001/search?name=${search}`);
+    const all = await axios.get(`https://oyo-serverside.herokuapp.com/search?name=${search}`);
    console.log(all.data);
-   if(all.data =='') return alert('no hotel found'), fetchhotels()
+   if(all.data == '') return alert('no hotel found'), fetchhotels()
    sethotels(all.data)
   }
 //   edithotel
@@ -31,7 +32,7 @@ function Home() {
     
 // deletehotel
   const deletehotel = (id) => {
-    axios.delete(`http://localhost:3001/${id}`).then((res) => {
+    axios.delete(`https://oyo-serverside.herokuapp.com/${id}`).then((res) => {
       fetchhotels();
       console.log(res.data);
     });
@@ -42,7 +43,7 @@ function Home() {
         <Navbar />
 
         <div className="search">
-          <form class="d-flex" onSubmit={findhotel}>
+          <form className="d-flex" onSubmit={findhotel}>
             <input
               className="form-control me-2"
               type="search"
@@ -58,6 +59,7 @@ function Home() {
         </div>
 
         <div className="hotels container-fluid">
+
           {hotels.map((hotel, index) => {
             return (
               <div key={index} className="hotel">

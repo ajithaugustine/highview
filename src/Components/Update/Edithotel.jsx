@@ -15,8 +15,8 @@ function Edithotel() {
     const history = useHistory()
     const {id} = useParams()
     useEffect(()=>{
-        axios.get(`http://localhost:3001/${id}`).then((res)=>{
-            const { name,address,imgUrl,country,roomtype,from,to, price,} =res.data
+        axios.get(`https://oyo-serverside.herokuapp.com/${id}`).then((res)=>{
+            const { name,address,imgUrl,country,roomtype,from,to, price} =res.data
             setname(name)
             setcountry(country)
             setimgUrl(imgUrl)
@@ -31,7 +31,7 @@ function Edithotel() {
 
     const register = (e) => {
       e.preventDefault();
-      axios.put(`http://localhost:3001/edithotel/${id}`, {
+      axios.put(`https://oyo-serverside.herokuapp.com/edithotel/${id}`, {
           name,
           address,
           imgUrl,
@@ -52,7 +52,7 @@ function Edithotel() {
     };
   
     return (
-      <div>
+      <div >
         <Navbar />
   
         <div className="add">
